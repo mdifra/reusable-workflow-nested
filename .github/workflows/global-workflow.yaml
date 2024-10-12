@@ -2,10 +2,24 @@ name: Global workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+          description: 'Environment to run tests against'
+          type: choice
+          options:
+            - sandbox
+            - sint
+            - prod
+          required: true
+      testenv:
+        type: environment
+        required: false
 
 jobs:
 
-  deploy-matrix:
+  deploy-production:
+
+    if: inputs.environment == 'prod'
 
     strategy:
       
@@ -37,7 +51,7 @@ jobs:
     uses: ./.github/workflows/deploy.yaml 
     
     with:
-      environment: ${{ matrix.environment }}
+      environment: $${{ inputs.environment }}
       cloud-provider: ${{ matrix.cloud-provider }}
       region: ${{ matrix.region }}
 
