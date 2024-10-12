@@ -33,7 +33,7 @@ jobs:
     environment:
       name: ${{ inputs.environment }}
 
-    #needs: gateway
+    needs: gateway
     steps:
       - run: echo "deploy.sh graphql-gateway --environment ${{ inputs.environment }} --cloud-provider ${{ inputs.cloud-provider }} --region ${{ inputs.region }}"
 
@@ -49,7 +49,7 @@ jobs:
       matrix:
         component: [ 'associate', 'checkout', 'account', 'store', 'punchout', 'customer-care', 'product', 'agreement' ]
     
-    #needs: graphql
+    needs: graphql
     steps:
       - run: echo "deploy.sh graphql-{{ matrix.component }} --environment ${{ inputs.environment }} --cloud-provider ${{ inputs.cloud-provider }} --region ${{ inputs.region }}"
 
@@ -65,7 +65,7 @@ jobs:
       matrix:
         component: [ 'associate', 'checkout', 'account', 'catalog', 'content' ]
     
-    #needs: sub-graph
+    needs: sub-graph
     steps:
       - run: echo "deploy.sh spark-${{ matrix.component }} --environment ${{ inputs.environment }} --cloud-provider ${{ inputs.cloud-provider }} --region ${{ inputs.region }}"
 
