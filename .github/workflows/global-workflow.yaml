@@ -27,8 +27,7 @@ jobs:
         region: [ 'eu1' ]
       
         include:
-          - environment: 'sandbox'
-            cloud-provider: 'az'
+          - cloud-provider: 'az'
             region: 'eu2'
     
     uses: ./.github/workflows/deploy.yaml 
