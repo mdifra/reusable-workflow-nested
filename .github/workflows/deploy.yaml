@@ -53,7 +53,7 @@ jobs:
       matrix:
         component: [ 'associate', 'checkout', 'account', 'catalog', 'content' ]
     
-    needs: gateway
+    needs: sub-graph
     steps:
       - run: echo "deploy.sh spark-{{ matrix.component }} --environment ${{ inputs.environment }} --cloud-provider ${{ inputs.cloud-provider }} --region ${{ inputs.region }}"
 
