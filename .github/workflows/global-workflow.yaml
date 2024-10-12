@@ -33,7 +33,7 @@ jobs:
     uses: ./.github/workflows/deploy.yaml 
     
     with:
-      environment: $${{ inputs.environment }}
+      environment: ${{ inputs.environment }}
       cloud-provider: ${{ matrix.cloud-provider }}
       region: ${{ matrix.region }}
 
@@ -45,7 +45,7 @@ jobs:
     uses: ./.github/workflows/deploy.yaml 
     
     with:
-      environment: $${{ inputs.environment }}
+      environment: ${{ inputs.environment }}
       cloud-provider: 'az'
       region: 'eu1'
 
@@ -70,6 +70,6 @@ jobs:
     uses: ./.github/workflows/deploy.yaml 
     
     with:
-      environment: $${{ inputs.environment }}
+      environment: ${{ inputs.environment }}
       cloud-provider: ${{ matrix.cloud-provider }}
       region: ${{ matrix.region }}

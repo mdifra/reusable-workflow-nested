@@ -55,5 +55,5 @@ jobs:
     
     needs: sub-graph
     steps:
-      - run: echo "deploy.sh spark-{{ matrix.component }} --environment ${{ inputs.environment }} --cloud-provider ${{ inputs.cloud-provider }} --region ${{ inputs.region }}"
+      - run: echo "deploy.sh spark-${{ matrix.component }} --environment ${{ inputs.environment }} --cloud-provider ${{ inputs.cloud-provider }} --region ${{ inputs.region }}"
 
