@@ -20,12 +20,18 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    environment:
+      name: ${{ inputs.environment }}
+
     steps:
       - run: echo "deploy.sh gateway --environment ${{ inputs.environment }} --cloud-provider ${{ inputs.cloud-provider }} --region ${{ inputs.region }}"
 
   graphql:
     
     runs-on: ubuntu-latest
+
+    environment:
+      name: ${{ inputs.environment }}
 
     needs: gateway
     steps:
@@ -35,6 +41,9 @@ jobs:
   sub-graph:
     
     runs-on: ubuntu-latest
+
+    environment:
+      name: ${{ inputs.environment }}
 
     strategy:
       matrix:
@@ -48,6 +57,9 @@ jobs:
   spark-web:
     
     runs-on: ubuntu-latest
+
+    environment:
+      name: ${{ inputs.environment }}
 
     strategy:
       matrix:

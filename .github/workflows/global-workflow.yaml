@@ -54,8 +54,6 @@ jobs:
 
     if: inputs.environment == 'prod'
 
-    environment: ${{ inputs.environment }}
-
     strategy:
             
       matrix:
