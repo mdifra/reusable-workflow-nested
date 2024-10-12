@@ -14,24 +14,25 @@ jobs:
       
       matrix:
       
-        environment: [ 'sandbox', 'sint', 'prod' ]
+        #environment: [ 'sandbox', 'sint', 'prod' ]
+        environment: [ 'sint' ]
         cloud-provider: [ 'gc', 'az' ]
         region: [ 'eu1' ]
       
-        include:
-          - environment: 'sandbox'
-            cloud-provider: 'az'
-            region: 'eu2'
-          - environment: 'prod'
-            cloud-provider: 'az'
-            region: 'eu2'
-          - environment: 'prod'
-            cloud-provider: 'az'
-            region: 'eu3'
+        #include:
+        #  - environment: 'sandbox'
+        #    cloud-provider: 'az'
+        #    region: 'eu2'
+        #  - environment: 'prod'
+        #    cloud-provider: 'az'
+        #    region: 'eu2'
+        #  - environment: 'prod'
+        #    cloud-provider: 'az'
+        #    region: 'eu3'
 
-        exclude:
-          - environment: 'sint'
-            cloud-provider: 'gc'
+        #exclude:
+        #  - environment: 'sint'
+        #    cloud-provider: 'gc'
     
     uses: ./.github/workflows/deploy.yaml 
     
