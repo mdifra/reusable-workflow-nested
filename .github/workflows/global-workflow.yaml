@@ -1,0 +1,43 @@
+name: Deploy workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  deploy-matrix:
+
+    strategy:
+      
+      # continue upon failures
+      fail-fast: false
+      
+      matrix:
+      
+        environment: [ 'sandbox', 'sint', 'prod' ]
+        cloud-provider: [ 'gc', 'az' ]
+        region: [ 'eu1' ]
+      
+        include:
+          - environment: 'sandbox'
+            cloud-provider: 'az'
+            region: 'eu2'
+          - environment: 'prod'
+            cloud-provider: 'az'
+            region: 'eu2'
+          - environment: 'prod'
+            cloud-provider: 'az'
+            region: 'eu3'
+
+        exclude:
+          - environment: 'sint'
+            cloud-provider: 'gc'
+    
+    uses: ./.github/workflows/deploy.yaml 
+    
+    with:
+      environment: ${{ matrix.environment }}
+      cloud-provider: ${{ matrix.cloud-provider }}
+      region: ${{ matrix.region }}
+
+    # secrets: inherit
