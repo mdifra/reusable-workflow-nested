@@ -40,7 +40,7 @@ jobs:
       matrix:
         component: [ 'associate', 'checkout', 'account', 'store', 'punchout', 'customer-care', 'product', 'agreement' ]
     
-    needs: graph-ql
+    needs: graphql
     steps:
       - run: echo "deploy.sh graphql-{{ matrix.component }} --environment ${{ inputs.environment }} --cloud-provider ${{ inputs.cloud-provider }} --region ${{ inputs.region }}"
 
