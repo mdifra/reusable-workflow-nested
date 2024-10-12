@@ -36,6 +36,7 @@ jobs:
       environment: ${{ inputs.environment }}
       cloud-provider: ${{ matrix.cloud-provider }}
       region: ${{ matrix.region }}
+      secrets: inherit
 
 
   deploy-sint:
@@ -48,6 +49,7 @@ jobs:
       environment: ${{ inputs.environment }}
       cloud-provider: 'az'
       region: 'eu1'
+      secrets: inherit
 
 
   deploy-production:
@@ -73,3 +75,4 @@ jobs:
       environment: ${{ inputs.environment }}
       cloud-provider: ${{ matrix.cloud-provider }}
       region: ${{ matrix.region }}
+      secrets: inherit
