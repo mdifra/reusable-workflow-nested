@@ -6,4 +6,5 @@ jobs:
   runner:
     uses: ./.github/workflows/reusable-workflow-runner.yaml
     with:
-      runner: "['ubuntu-22.04', 'ubuntu-20.04']" 
+      # for a self-hosted runner it could be ['self-hosted','arm64']
+      runner: "['ubuntu-22.04']" 
