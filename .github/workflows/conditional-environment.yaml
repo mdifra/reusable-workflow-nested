@@ -1,7 +1,7 @@
 name: Use variable for specific environment
 
 on:
-  workflow_call:
+  workflow_dispatch:
   push:
     branches: [ "dev", "staging", "master" ]
   
@@ -14,7 +14,7 @@ env:
 jobs:
   get-variables:
     runs-on: ubuntu-latest
-    environment: ${TARGET_ENVIRONMENT}
+    environment: $TARGET_ENVIRONMENT
     steps:
       - name: Print variable from environment
         run: |
