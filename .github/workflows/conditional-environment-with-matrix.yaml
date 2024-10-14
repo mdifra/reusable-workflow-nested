@@ -1,0 +1,21 @@
+name: Use variable for specific environment
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "dev", "staging", "master" ]
+  
+  pull_request:
+    branches: [ "dev", "staging", "master" ]
+
+jobs:
+  get-target:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [ "${{ ( github.base_ref || github.ref_name ) == 'master' && 'production' || ( github.base_ref || github.ref_name ) }}" ]
+    environment: ${{ matrix.environment }}
+    steps:
+      - name: Print variable from environment
+        run: |
+          echo "The value of the 'config' variable in the '${{ matrix.environment }}' environment is: ${{ vars.config }}"
