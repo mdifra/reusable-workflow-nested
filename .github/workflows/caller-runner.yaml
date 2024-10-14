@@ -6,4 +6,4 @@ jobs:
   runner:
     uses: ./.github/workflows/reusable-workflow-runner.yaml
     with:
-      runner: "['ubuntu-latest']" 
+      runner: "['ubuntu-22.04', 'ubuntu-20.04']" 
