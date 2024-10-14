@@ -1,0 +1,9 @@
+name: Call reusable workflow with parameter
+on:
+  workflow_dispatch:
+
+jobs:
+  runner:
+    uses: ./.github/workflows/reusable-workflow-runner.yaml
+    with:
+      runner: 'ubuntu-24.04'

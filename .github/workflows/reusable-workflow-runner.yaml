@@ -1,0 +1,15 @@
+name: Use custom runner
+
+on:
+  workflow_call:
+    inputs:
+      runner:
+        required: true
+        type: string
+    # the rest of the inputs here
+
+jobs:
+  trigger-mother-pipeline:
+    runs-on: ${{ inputs.runner }}
+    steps:
+    - run: lsb_release -a
