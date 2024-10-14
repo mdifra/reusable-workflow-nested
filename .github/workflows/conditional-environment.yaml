@@ -1,0 +1,21 @@
+name: Use variable for specific environment
+
+on:
+  workflow_call:
+  push:
+    branches: [ "dev", "staging", "master" ]
+  
+  pull_request:
+    branches: [ "dev", "staging", "master" ]
+
+env:
+  TARGET_ENVIRONMENT: ${{ ( github.base_ref || github.ref_name ) == 'master' && 'production' || ( github.base_ref || github.ref_name ) }}
+
+jobs:
+  get-variables:
+    runs-on: ubuntu-latest
+    environment: ${TARGET_ENVIRONMENT}
+    steps:
+      - name: Print variable from environment
+        run: |
+          echo "The value of the 'config' variable in the '$TARGET_ENVIRONMENT' environment is: ${{ vars.config }}"
