@@ -14,7 +14,7 @@ env:
 jobs:
   get-variables:
     runs-on: ubuntu-latest
-    environment: $TARGET_ENVIRONMENT
+    environment: ${{ ( github.base_ref || github.ref_name ) == 'master' && 'production' || ( github.base_ref || github.ref_name ) }}
     steps:
       - name: Print variable from environment
         run: |
