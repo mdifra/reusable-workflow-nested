@@ -8,14 +8,22 @@ on:
   pull_request:
     branches: [ "dev", "staging", "master" ]
 
-env:
-  TARGET_ENVIRONMENT: ${{ ( github.base_ref || github.ref_name ) == 'master' && 'production' || ( github.base_ref || github.ref_name ) }}
-
 jobs:
-  get-variables:
+  get-target:
     runs-on: ubuntu-latest
-    environment: ${{ ( github.base_ref || github.ref_name ) == 'master' && 'production' || ( github.base_ref || github.ref_name ) }}
+    outputs:
+      environment: ${{ steps.env.outputs.env }}
+    steps:
+      - id: env
+        name: Determine target environment and set output variable
+        run: |
+          echo "env=${{ ( github.base_ref || github.ref_name ) == 'master' && 'production' || ( github.base_ref || github.ref_name ) }}" >> "$GITHUB_OUTPUT"
+
+  access-variables:
+    needs: get-target
+    runs-on: ubuntu-latest
+    environment: ${{ needs.get-target.outputs.environment }}
     steps:
       - name: Print variable from environment
         run: |
-          echo "The value of the 'config' variable in the '$TARGET_ENVIRONMENT' environment is: ${{ vars.config }}"
+          echo "The value of the 'config' variable in the '${{ needs.get-target.outputs.environment }}' environment is: ${{ vars.config }}"
