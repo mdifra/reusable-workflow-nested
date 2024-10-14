@@ -1,4 +1,4 @@
-name: Use variable for specific environment
+name: Use variable for specific environment with matrix
 
 on:
   workflow_dispatch:
