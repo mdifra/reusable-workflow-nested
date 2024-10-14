@@ -10,6 +10,6 @@ on:
 
 jobs:
   trigger-mother-pipeline:
-    runs-on: ${{ inputs.runner }}
+    runs-on: ${{ fromJSON(inputs.runner) }}
     steps:
     - run: lsb_release -a
