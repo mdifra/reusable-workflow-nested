@@ -30,7 +30,7 @@ jobs:
           - cloud-provider: 'az'
             region: 'eu2'
     
-    uses: ./.github/workflows/deploy.yaml 
+    uses: ./reusable-workflows/deploy.yaml 
     
     with:
       environment: ${{ inputs.environment }}
