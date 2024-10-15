@@ -1,0 +1,16 @@
+name: Use custom runner with an array
+
+on:
+  workflow_call:
+    inputs:
+      runner:
+        # Inputs do not support arrays so we use a "JSON" string
+        type: string
+        default: required
+
+jobs:
+  trigger-mother-pipeline:
+    # The fromJSON function is then used to retrieve the actual array
+    runs-on: ${{ fromJSON(inputs.runner) }}
+    steps:
+    - run: lsb_release -a

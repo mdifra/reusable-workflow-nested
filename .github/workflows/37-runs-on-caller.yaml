@@ -1,0 +1,21 @@
+name: Call reusable workflow with parameter
+on:
+  workflow_dispatch:
+
+jobs:
+
+  runs-on-single-parameter:
+    uses: ./.github/workflows/37-runs-on-single-reusable-workflow.yaml
+    with:
+      # This reusable workflow takes a string as a single parameter
+      runner: ubuntu-22.04
+
+  runs-on-array:
+    uses: ./.github/workflows/37-runs-on-multiple-reusable-workflow.yaml
+    with:
+      # This reusable workflow takes multiple parameters an array of strings
+      # It requires the string to be quoted as in the example below:
+      # runner: "['self-hosted','linux']"
+      # It can also take a single parameter as long as it is a quoted array
+      # with only one element, as:
+      runner: "['ubuntu-22.04']" 

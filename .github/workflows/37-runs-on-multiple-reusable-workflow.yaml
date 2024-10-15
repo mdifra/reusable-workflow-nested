@@ -1,15 +1,14 @@
-name: Use custom runner
+name: Use custom runner with a string
 
 on:
   workflow_call:
     inputs:
       runner:
-        required: true
+        default: ubuntu-latest
         type: string
-    # the rest of the inputs here
 
 jobs:
   trigger-mother-pipeline:
-    runs-on: ${{ fromJSON(inputs.runner) }}
+    runs-on: ${{ inputs.runner }}
     steps:
     - run: lsb_release -a
